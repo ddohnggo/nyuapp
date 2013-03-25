@@ -12,7 +12,7 @@ import json
 
 from tornado.options import options, define
 
-define("port", default=8000, type=int)
+define("port", default=59064, type=int)
 define("facebook_api_key")
 define("facebook_secret")
 define("cookie_secret")
