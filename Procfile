@@ -1,1 +1,1 @@
-web: tornado --workers=4
+web: python app.py 
