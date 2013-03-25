@@ -7,7 +7,7 @@ import tornado.autoreload
 
 import os
 import logging
-import pymongo
+#import pymongo
 import json
 
 from tornado.options import options, define
