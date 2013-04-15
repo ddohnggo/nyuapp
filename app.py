@@ -17,6 +17,7 @@ define("facebook_api_key")
 define("facebook_secret")
 define("cookie_secret")
 define("redirect_path")
+define("scope")
 
 class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     @tornado.web.asynchronous
@@ -95,7 +96,8 @@ class Application(tornado.web.Application):
             "facebook_secret": options.facebook_secret,
             "cookie_secret": options.cookie_secret,
             "xsrf_cookies": True,
-            "redirect_path": options.redirect_path
+            "redirect_path": options.redirect_path,
+            "scope": options.scope
         }
         super(Application, self).__init__(handlers, **settings)
 
