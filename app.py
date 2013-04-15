@@ -27,6 +27,8 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
             self.redirect('/auth/login')
             return
 
+        print self.settings['redirect_path']
+
         self.facebook_request(
             "/me/feed",
             access_token=access_token,
@@ -35,7 +37,7 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     def _on_facebook_user_feed(self, response):
         name=self.get_secure_cookie('user_name')
         print "in user feed" + name
-        print response
+        print self.settings['redirect_path']
         self.render('home.html', feed=response['data'] if response else [], name=name)
 
 class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
@@ -60,7 +62,7 @@ class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
         self.authorize_redirect(
             redirect_uri=self.settings['redirect_path'],
             client_id=self.settings['facebook_api_key'],
-            extra_params={'scope': 'read_stream,publish_stream'}
+            extra_params={'scope': self.settings['scope']}
         )
 
     def _on_facebook_login(self, user):    
