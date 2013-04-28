@@ -10,6 +10,7 @@ import logging
 import pymongo
 import json
 
+from urlparse import urlparse
 from tornado.options import options, define
 
 define("port", default=8000, type=int)
