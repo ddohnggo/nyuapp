@@ -18,11 +18,13 @@ define("facebook_secret")
 define("cookie_secret")
 define("redirect_path")
 define("scope")
+MONGO_URL = os.environ.get('MONGOHQ_URL')
 
 class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     @tornado.web.asynchronous
     def get(self):
         access_token = self.get_secure_cookie('access_token')
+        print "access token is %s" % access_token
         if not access_token: 
             print "don't have access token"
             self.redirect('/auth/login')
@@ -37,7 +39,7 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
 
     def _on_facebook_user_feed(self, response):
         name=self.get_secure_cookie('user_name')
-        print "in user feed" + name
+        print "in user feed " + name
         print self.settings['redirect_path']
         self.render('home.html', feed=response['data'] if response else [], name=name)
 
@@ -71,9 +73,26 @@ class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
             self.clear_all_cookies()
             raise tornado.web.HTTPError(500, 'Facebook authentication failed')
 
+        print user
         self.set_secure_cookie('user_id', str(user['id']))
         self.set_secure_cookie('user_name', str(user['name']))
         self.set_secure_cookie('access_token', str(user['access_token']))
+        self.set_secure_cookie('fbid', str(user['id']))
+        self.set_secure_cookie('locale', str(user['locale']))
+        self.set_secure_cookie('photo', str(user['picture']['data']['url']))
+        self.set_secure_cookie('session_expoires', str(user['session_expires']))
+
+        # save to db
+        user_db = self.application.db.users 
+        user = {
+            "user_id": str(user['id']),
+            "user_name": str(user['name']),
+            "access_token": str(user['access_token']),
+            "fbid": str(user['locale']),
+            "access_token": str(user['access_token']),
+            "photo": str(user['picture']['data']['url'])
+            }
+        user_db.save(user)
         self.redirect('/')
 
 class LogoutHandler(tornado.web.RequestHandler):
@@ -84,6 +103,17 @@ class LogoutHandler(tornado.web.RequestHandler):
 class Application(tornado.web.Application): 
     def __init__(self):
         dir_name = os.path.dirname(__file__)
+        if MONGO_URL:
+            # get a connection
+            conn = pymongo.Connection(MONGO_URL)
+            
+            # get the db
+            self.db = conn[urlparse(MONGO_URL).path[1:]]
+        else:
+            # not an app with mongohq, localhost instead
+            conn = pymongo.Connection("localhost", 27017)
+            self.db = conn["example"]
+
         handlers = [
             (r'/', MainHandler),
             (r'/auth/login', LoginHandler),
