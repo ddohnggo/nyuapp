@@ -1,11 +1,15 @@
 <!DOCTYPE html>
   <head>
       <title> {{ name }} on Fly with Me - Flight Tracker </title>
-      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-      <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-  </head>
+      <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+      <link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" />
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>
+ </head>
 
   <body>
       <h1> Fly with Me - Flight Tracker </h1>
@@ -20,26 +24,48 @@
 
       <div>
            <fieldset class='ui-grid-a'>
-           <div class='ui-block-a'>
+           <!-- <div class='ui-block-a'>
                <input type="text" name="text1" id="text1" class="custom" />
-           </div>
+           </div> -->
  
+           <div class='ui-block-a'>
+               <label for="mydeptdate">Flight Departure</label>
+               <input name="mydeptdate" id="mydeptdate" type="date" data-role="datebox" data-options='{"mode": "calbox"}'>
+           </div>
+
            <div class='ui-block-b'>
+               <label for="myarvdate">Flight Return</label>
+               <input name="myarvdate" id="myarvdate" type="date" data-role="datebox" data-options='{"mode": "calbox"}'>
+           </div>
+
+           <div class='ui-block-c'>
                <select name="select-choic-3" id="select-choic-3">
-                   <option value="1"> --Flight-- </option>
+                   <option value="1"> --Airline-- </option>
                    <option value="2"> Us Aiwarys </option>
                    <option value="3"> Delta </option>
                    <option value="4"> American </option>
                    <option value="5"> Virgin </option>
                </select>
            </div>
+
+           <div class='ui-block-d'>
+                   <a href="#" data-role="button" data-icon="plus"> Add </a> 
+               </ul>
+           </div>
+
            </fieldset>
        </div>
 
       <div>
-          <ul> <a href="/flight"> <img src="static/images/map-symbol-plane-clip-art.jpg" width="100" height="85"/> </a> </ul>
-          <ul> <a href="/stay"> <img src="static/images/Hotel.png" width="100" height="85" /> </a> </ul>
-          <ul> <a href="/list"> <img src="static/images/list.png" width="100" height="85" /> </a> </ul>
+         <ul data-role="listview" data-inset="true" class="ui-icon-alt">
+            <li> <a href="/" data-role="button" data-icon="home"> Home </a> </li>
+            <li> <a href="/flight" data-role="button" data-icon="star"> Flight </a> </li>
+            <li> <a href="/stay" data-role="button" data-icon="bars"> Stay </a> </li>
+            <li> <a href="/list" data-role="button" data-icon="bars"> List </a> </li>
+           <!-- <ul> <a href="/flight"> <img src="static/images/map-symbol-plane-clip-art.jpg" width="100" height="85" /> </a> </ul>
+           <ul> <a href="/stay"> <img src="static/images/Hotel.png" width="100" height="85"/> </a> </ul>
+           <ul> <a href="/list"> <img src="static/images/list.png" width="100" height="85"/> </a> </ul> -->
+         </ul>
       </div>
   </body>
 

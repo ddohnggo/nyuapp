@@ -2,9 +2,13 @@
   <head>
       <title> {{ name }} on Fly with Me - Stay Tracker </title>
       <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-      <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" />
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+      <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>
   </head>
 
   <body>
@@ -20,11 +24,22 @@
 
       <div> 
           <fieldset class='ui-grid-a'>
-          <div class='ui-block-a'>
+          <!-- <div class='ui-block-a'>
+              Confirmation
               <input type="text" name="text1" id="text1" class="custom" />
-          </div>
+          </div> -->
 
           <div class='ui-block-b'>
+              <label for="mycheckindate">Check-In</label>
+              <input name="mycheckindate" id="mycheckindate" type="date" data-role="datebox" data-options='{"mode":"calbox"}'>
+          </div>
+
+          <div class='ui-block-c'>
+              <label for="mycheckoutdate">Check-Out</label>
+              <input name="mycheckoutdate" id="mycheckoutdate" type="date" data-role="datebox" data-options='{"mode":"calbox"}'>
+          </div>
+
+          <div class='ui-block-d'>
               <select name="select-choic-3" id="select-choic-3"> 
                   <option value="1"> --Stay-- </option>
                   <option value="2"> Marriott </option> 
@@ -33,13 +48,24 @@
                   <option value="5"> Boutique Hotel </option>
               </select>
           </div>
+
+          <div class='ui-block-e'>
+              <a href="#" data-role="button" data-icon="plus"> Add </a>
+          </div>    
+
           </fieldset>
       </div> 
    
       <div>
-          <ul> <a href="/flight"> <img src="static/images/map-symbol-plane-clip-art.jpg" width="100" height="85"/> </a> </ul>
-          <ul> <a href="/stay"> <img src="static/images/Hotel.png" width="100" height="85" /> </a> </ul>
-          <ul> <a href="/list"> <img src="static/images/list.png" width="100" height="85" /> </a> </ul>
+         <ul data-role="listview" data-inset="true" class="ui-icon-alt">
+            <li> <a href="/" data-role="button" data-icon="home"> Home </a> </li>
+            <li> <a href="/flight" data-role="button" data-icon="star"> Flight </a> </li>
+            <li> <a href="/stay" data-role="button" data-icon="bars"> Stay </a> </li>
+            <li> <a href="/list" data-role="button" data-icon="bars"> List </a> </li>
+           <!-- <ul> <a href="/flight"> <img src="static/images/map-symbol-plane-clip-art.jpg" width="100" height="85" /> </a> </ul>
+           <ul> <a href="/stay"> <img src="static/images/Hotel.png" width="100" height="85"/> </a> </ul>
+           <ul> <a href="/list"> <img src="static/images/list.png" width="100" height="85"/> </a> </ul> -->
+         </ul>
       </div>
   </body>
 
