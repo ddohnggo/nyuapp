@@ -1,0 +1,10 @@
+#nav {
+   width: 960px;
+   height: auto;
+   overflow: hidden;
+}
+
+#nav img {
+   display: inline;
+   margin: 0 10px;
+}

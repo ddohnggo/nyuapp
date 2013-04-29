@@ -21,6 +21,22 @@ define("redirect_path")
 define("scope")
 MONGO_URL = os.environ.get('MONGOHQ_URL')
 
+def getattrib(self, val):
+    value = self.get_secure_cookie(val)
+    return value
+
+class ListHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('list.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+
+class StayHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('stay.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+
+class FlightHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('flight.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+
 class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     @tornado.web.asynchronous
     def get(self):
@@ -39,10 +55,11 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
             callback=self.async_callback(self._on_facebook_user_feed))
 
     def _on_facebook_user_feed(self, response):
-        name=self.get_secure_cookie('user_name')
+        name = self.get_secure_cookie('user_name')
+        pic = self.get_secure_cookie('photo')
         print "in user feed " + name
         print self.settings['redirect_path']
-        self.render('home.html', feed=response['data'] if response else [], name=name)
+        self.render('home.html', feed=response['data'] if response else [], name=name, pic=pic)
 
 class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     @tornado.web.asynchronous
@@ -118,7 +135,10 @@ class Application(tornado.web.Application):
         handlers = [
             (r'/', MainHandler),
             (r'/auth/login', LoginHandler),
-            (r'/auth/logout', LogoutHandler)
+            (r'/auth/logout', LogoutHandler),
+            (r'/flight', FlightHandler),
+            (r'/stay', StayHandler),
+            (r'/list', ListHandler)
         ]
         settings = {
             "template_path": os.path.join(dir_name, "templates"),

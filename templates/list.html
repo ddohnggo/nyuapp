@@ -1,28 +1,25 @@
 <!DOCTYPE html>
   <head>
-      <title> {{ name }} on Fly with Me</title>
+      <title> {{ name }} on Fly with Me - Lists </title>
       <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
       <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-      <link rel="stylesheet" href="/static/fwm.css"/>
   </head>
 
   <body>
-      <h1> Fly with Me </h1>
+      <h1> Fly with Me - List </h1>
       <div>
           <a href="/auth/logout"> Sign Out </a> 
           <h1> {{ name }} </h1>
       </div>
-
-      <div id="profile"> 
-          <img src= "{{ pic }}" />
+      <div id="profile">
+          <img src="{{ pic }}" />
       </div>
-
-      <div id="nav">
-          <ul> <a href="/flight"> <img src="static/images/map-symbol-plane-clip-art.jpg" width="100" height="85" /> </a> </ul>
-          <ul> <a href="/stay"> <img src="static/images/Hotel.png" width="100" height="85"/> </a> </ul>
-          <ul> <a href="/list"> <img src="static/images/list.png" width="100" height="85"/> </a> </ul>
+      <div>
+          <ul> <a href="/flight"> <img src="static/images/map-symbol-plane-clip-art.jpg" width="100" height="85"/> </a> </ul>
+          <ul> <a href="/stay"> <img src="static/images/Hotel.png" width="100" height="85" /> </a> </ul>
+          <ul> <a href="/list"> <img src="static/images/list.png" width="100" height="85" /> </a> </ul>
       </div>
   </body>
 
