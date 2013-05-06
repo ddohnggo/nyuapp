@@ -1,0 +1,41 @@
+{% extends "base3.html" %}
+
+{% block head %}
+
+    <script>
+            try {
+
+    $(function() {
+
+    });
+
+  } catch (error) {
+    console.error("Your javascript has an error: " + error);
+  }
+  </script>
+
+{% end %}
+
+
+{% block body %}
+<!--        	<div data-role="page" id="page1" class="app"> -->
+            		<div id="header" data-role="header" data-position="fixed">
+                		<h1>{{ name }}'s Trip List</h1>
+            		</div>
+            		<div data-role="content">
+			     <div id="my-wrapper">
+				<ul data-role="listview" data-autodividers="true" data-divider-theme="b" data-inset="false" data-filter="true" data-filer-theme="d" data-filter-placeholder="Search trips...">
+						<!--Alert: List of trips should be get from database in alphabetical order-->
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">April Trip with family</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">A1</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">Birthday Trip</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">Bussiness</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">B1</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">C1</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">D1</a></li>
+						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">Vegas Baby</a></li>
+				</ul>
+			     </div>
+            		</div>
+
+{% end %}

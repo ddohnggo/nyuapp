@@ -25,6 +25,14 @@ def getattrib(self, val):
     value = self.get_secure_cookie(val)
     return value
 
+class TripListHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('version2/tripList2.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+
+class NewTripHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('version2/newTrip2.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+
 class ListHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('list.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
@@ -59,8 +67,8 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
         pic = self.get_secure_cookie('photo')
         print "in user feed " + name
         print self.settings['redirect_path']
-        print "picture " + pic
-        self.render('home.html', feed=response['data'] if response else [], name=name, pic=pic)
+        print "picture "
+        self.render('version2/home.html', feed=response['data'] if response else [], name=name, pic=pic)
 
 class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     @tornado.web.asynchronous
@@ -139,7 +147,9 @@ class Application(tornado.web.Application):
             (r'/auth/logout', LogoutHandler),
             (r'/flight', FlightHandler),
             (r'/stay', StayHandler),
-            (r'/list', ListHandler)
+            (r'/list', ListHandler),
+            (r'/triplist', TripListHandler),
+            (r'/trip', NewTripHandler)
         ]
         settings = {
             "template_path": os.path.join(dir_name, "templates"),

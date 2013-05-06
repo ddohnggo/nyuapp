@@ -1,0 +1,142 @@
+{% extends "base3.html" %}
+
+{% block head %}
+
+    <script>
+            try {
+
+    $(function() {
+
+    });
+
+  } catch (error) {
+    console.error("Your javascript has an error: " + error);
+  }
+        </script>
+	<!--Alert: how to submit three forms by pressing one button, do not know whether it works-->
+	<!--Alert: update database-->
+	<script>
+	submitForms = function(){
+		document.getElementById("tripName").submit();
+   		document.getElementById("flightForm").submit();
+    		document.getElementById("hotelForm").submit();
+		document.getElementById("todoForm").submit();
+		return true;
+	}
+	</script>
+{% end %}
+
+	<!--Alert: Database update when submit forms for tripInfo page to display updated info-->
+
+{% block body %}
+ <!--       	<div data-role="page" id="page1" class="app"> -->
+            		<div id="header" data-role="header" data-position="fixed">
+				<a href="tripList.html">Cancel</a>
+                		<h1>{{ name }}'s New Trip</h1>
+				<a href="tripList.html" onclick="submitForms()">Done</a>
+            		</div>
+            		<div data-role="content">
+				<form name="tripForm" action="./" method="get">
+					<label for="tripName">Trip Name: </label>
+					<input type="text" name="tripName" id="tripName" value="" data-clear-btn="true">
+				</form>
+				<div data-role="collapsible-set" data-theme="b" data-content-theme="d" data-inset="true">
+					<div data-role="collapsible">
+						<h2>Flight Info</h2>
+						<!--Alert: action attribute need url-->
+						<form autocomplete="on" name="flightForm" action="./" method="get">
+
+							<ul data-role="listview" data-inset="true">
+								<li data-role="fieldcontain">
+									<label for="airline">Airline: </label>
+									<input type="text" name="airline" id="airline" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="confirmation">Conf.#: </label>
+									<input type="text" name="confirmation" id="confirmation" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="departwhere">Depart Airport: </label>
+									<input type="text" name="departwhere" id="departwhere" value="" data-clear-btn="true" >
+									<label for="departday">Depart Date: </label>
+									<input type="date" name="departday" id="departday" value="" data-clear-btn="true" >
+									<label for="departtime">Depart time: </label>
+									<input type="time" name="departtime" id="departtime" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="arrivewhere">Arrival Airport: </label>
+									<input type="text" name="arrivewhere" id="arrivewhere" value="" data-clear-btn="true" >
+									<label for="arriveday">Arrival Date: </label>
+									<input type="date" name="arriveday" id="arriveday" value="" data-clear-btn="true" >
+									<label for="arrivetime">Arrival time: </label>
+									<input type="time" name="arrivetime" id="arrivetime" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="flight">Flight #: </label>
+									<input type="text" name="flight" id="flight" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="terminal">Terminal: </label>
+									<input type="number" min="1" max="10" name="terminal" id="terminal" value="" data-clear-btn="true" >
+									<label for="gate">Gate: </label>
+									<input type="text" name="gate" id="gate" value="" data-clear-btn="true" >
+									<label for="seat">Seat: </label>
+									<input type="text" name="seat" id="seat" value="" data-clear-btn="true" >
+								</li>								
+							</ul>
+						</form>
+					</div>
+					<div data-role="collapsible">
+						<h2>Hotel Info</h2>
+						<form autocomplete="on" id="hotelForm" action="./" method="get">
+
+							<ul data-role="listview" data-inset="true">
+								<li data-role="fieldcontain">
+									<label for="hotel">Hotel Name: </label>
+									<input type="text" name="hotel" id="hotel" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="zipcode">Zip Code: </label>
+									<input type="text" size="5" maxlength="5" name="zipcode" id="zipcode" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="room">Room: </label>
+									<input type="text" name="room" id="room" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="inday">Check-In Date: </label>
+									<input type="date" name="inday" id="inday" value="" data-clear-btn="true" >
+									<label for="intime">Check-In Time: </label>
+									<input type="time" name="intime" id="intime" value="" data-clear-btn="true" >
+								</li>
+								<li data-role="fieldcontain">
+									<label for="outday">Check-Out Date: </label>
+									<input type="date" name="outday" id="outday" value="" data-clear-btn="true" >
+									<label for="outtime">Check-Out Time: </label>
+									<input type="time" name="outtime" id="outtime" value="" data-clear-btn="true" >
+								</li>
+							</ul>
+						</form>
+					</div>
+					<div data-role="collapsible">
+						<h2>To-Do</h2>
+						<form autocomplete="on" id="todoForm" action="./" method="get">
+							<ul data-role="listview" data-inset="true">
+								<li data-role="fieldcontain">
+                                                                        <label for="todoForm"> Item #1: </label>
+									<input type="text" class="todo" value="" data-clear-btn="true" data-inline="true">
+                                                                        <label for="todoForm"> Item #2: </label>
+									<input type="text" class="todo" value="" data-clear-btn="true" data-inline="true">
+                                                                        <label for="todoForm"> Item #3: </label>
+									<input type="text" class="todo" value="" data-clear-btn="true" data-inline="true">
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>
+				
+            		</div>
+{% end %}
+
+
+

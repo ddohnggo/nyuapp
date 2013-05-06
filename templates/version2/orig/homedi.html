@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<title> {{ name }} on Fly with Me</title>	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/others.css" />
+	<script type="text/javascript" src="cordova-2.6.0.js"></script>
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.min.js"></script>	
+	<script>
+            try {
+
+    $(function() {
+
+    });
+
+  } catch (error) {
+    console.error("Your javascript has an error: " + error);
+  }
+        </script>
+	</head>
+
+	<body>
+        	<div data-role="page" id="page1" class="app">
+            		<div id="header" data-theme="b" data-role="header" data-position="fixed">
+                		<h1>Home</h1>
+            		</div>
+            		<div data-role="content">
+                		<h2>{{ name }}</h2>
+				<img src= "{{ pic }}" alt="profile pic" height="170px" width="200px">
+                		<a id="signout" data-role="button" data-theme="b" href="signout.html" data-transition="flip">Sign Out</a>
+            		</div>
+			<div data-id="footer" data-role="footer" data-theme="b" data-position="fixed">
+				<div data-role="navbar" data-iconpos="left">
+					<ul>
+						<li><a href="/" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
+						<li><a href="/triplist" data-transition="pop" data-icon="bar">Trip List</a></li>
+						<li><a href="/trip" data-transition="pop" data-icon="plus">New Trip</a></li>
+
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+		</div>
+	</body>
+</html>
+
+

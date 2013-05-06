@@ -6,6 +6,8 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>  
+    <meta charset="utf-8">
+    <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
     <script>
 		$( document ).on( "pageinit", "#myPage", function() {
 			$( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
@@ -53,7 +55,7 @@
   </head>
 
   <body>
-    <div data-role="page" id="myPage">
+    <div data-role="page" id="myPage" class="app">
       <div data-role="header" data-position="fixed">
         <a href="/auth/logout" data-icon="delete"> Sign out </a>
         <h1> {{ name }} Fly with Me </h1>
@@ -78,9 +80,10 @@
         <div data-role="navbar" class="nav-glyphish-example">
           <ul>
             <li> <a href="/" id="home" data-role="button" data-icon="custom"> Home </a></li>
-            <li> <a href="/flight" id="plane" data-role="button" data-icon="custom"> Flight </a></li>
-            <li> <a href="/stay" id="stay" data-role="button" data-icon="custom"> Stay </a></li>
-            <li> <a href="/list" data-role="button" data-icon="bars"> List </a></li>
+          <!--  <li> <a href="/flight" id="plane" data-role="button" data-icon="custom"> Flight </a></li>
+            <li> <a href="/stay" id="stay" data-role="button" data-icon="custom"> Stay </a></li> -->
+            <li> <a href="/triplist" id="stay" data-role="button" data-icon="bars"> Trip List </a></li>
+            <li> <a href="/trip" id="plane" data-role="button" data-icon="custom"> New Trip </a></li>
           </ul>
         </div> <!-- navbar -->
       </div> <!-- footer -->
