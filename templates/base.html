@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>  
+    <script>
+		$( document ).on( "pageinit", "#myPage", function() {
+			$( "#autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {
+				var $ul = $( this ),
+					$input = $( data.input ),
+					value = $input.val(),
+					html = "";
+				$ul.html( "" );
+                              /*  $("ul li").on("click", function() {
+                                      $("li").html($(this).html()); 
+                                      var tid = $('input', this).val();
+                                      alert(tid);
+                                });*/
+				if ( value && value.length > 2 ) {
+					$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+                                    /*    $("ul").on("click", "li", function() {
+                                            var tid = this.id;
+                                            $('#autocomplete').toggle();    
+                                            alert(tid);
+                                        }); */
+					$ul.listview( "refresh" );
+					$.ajax({
+						url: "http://gd.geobytes.com/AutoCompleteCity",
+						dataType: "jsonp",
+						crossDomain: true,
+						data: {
+							q: $input.val()
+						}
+					})
+					.then( function ( response ) {
+ 					        $.each( response, function ( i, val ) {
+                                                        var val2 = val.replace(/ /g,'_'); 
+							html += "<li id=" + val2 + ">" + val + "</li>";
+						});
+						$ul.html( html );
+						$ul.listview( "refresh" );
+						$ul.trigger( "updatelayout");
+					});
+               			}
+			});
+		});
+    </script>
+  </head>
+
+  <body>
+    <div data-role="page" id="myPage">
+      <div data-role="header" data-position="fixed">
+        <a href="/auth/logout" data-icon="delete"> Sign out </a>
+        <h1> {{ name }} Fly with Me </h1>
+      </div> <!-- end header -->   
+
+      <div data-role="content">
+        <img src= "{{ pic }}" />
+        {% block body %}
+        {% end %}
+      </div> <!-- end content -->  
+
+      <style>	
+         .nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+         .nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+          #todo .ui-icon { background:  url(static/glyphish-icons/117-todo.png) 50% 50% no-repeat; background-size: 24px 16px;  }
+          #plane .ui-icon { background:  url(static/glyphish-icons/38-airplane.png) 50% 50% no-repeat;  background-size: 22px 27px; }
+          #home .ui-icon { background:  url(static/glyphish-icons/53-house.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+          #stay .ui-icon { background:  url(static/glyphish-icons/07-map-marker.png) 50% 50% no-repeat;  background-size: 22px 24px; }
+      </style>
+
+      <div data-role="footer" class="nav-glyphish-example">
+        <div data-role="navbar" class="nav-glyphish-example">
+          <ul>
+            <li> <a href="/" id="home" data-role="button" data-icon="custom"> Home </a></li>
+            <li> <a href="/flight" id="plane" data-role="button" data-icon="custom"> Flight </a></li>
+            <li> <a href="/stay" id="stay" data-role="button" data-icon="custom"> Stay </a></li>
+            <li> <a href="/list" data-role="button" data-icon="bars"> List </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

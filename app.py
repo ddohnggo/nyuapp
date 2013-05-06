@@ -59,6 +59,7 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
         pic = self.get_secure_cookie('photo')
         print "in user feed " + name
         print self.settings['redirect_path']
+        print "picture " + pic
         self.render('home.html', feed=response['data'] if response else [], name=name, pic=pic)
 
 class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
