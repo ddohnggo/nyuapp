@@ -27,7 +27,15 @@ def getattrib(self, val):
 
 class TripListHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('version2/tripList2.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+        trips = dict()
+        uid = self.get_secure_cookie('user_id') 
+        trip_db = self.application.db.trips
+        trips = trip_db.find({'uid': uid})
+        trips_list = []
+        for i in trips:
+            trips_list.append(i['tripName'])
+        trips_list.sort()
+        self.render('version2/tripList3.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'), trips=trips_list)
 
 class NewTripHandler(tornado.web.RequestHandler):
     def get(self):
@@ -42,12 +50,10 @@ class NewTripHandler(tornado.web.RequestHandler):
         for key in trip_fields:
             trip[key] = self.get_argument(key, None)
         trip['uid'] = self.get_secure_cookie('user_id') 
-
         trip_db = self.application.db.trips
-
         print trip
         trip_db.save(trip)
-        self.redirect('/trip')
+        self.redirect('/triplist')
 
 class ListHandler(tornado.web.RequestHandler):
     def get(self):
@@ -81,10 +87,14 @@ class MainHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     def _on_facebook_user_feed(self, response):
         name = self.get_secure_cookie('user_name')
         pic = self.get_secure_cookie('photo')
+        trips = dict()
+        uid = self.get_secure_cookie('user_id')
+        trip_db = self.application.db.trips
+        trip_cnt = trip_db.find({'uid': uid}).count()
         print "in user feed " + name
         print self.settings['redirect_path']
         print "picture "
-        self.render('version2/home.html', feed=response['data'] if response else [], name=name, pic=pic)
+        self.render('version2/home.html', feed=response['data'] if response else [], name=name, pic=pic, trip_cnt=trip_cnt)
 
 class LoginHandler(tornado.web.RequestHandler, tornado.auth.FacebookGraphMixin):
     @tornado.web.asynchronous
