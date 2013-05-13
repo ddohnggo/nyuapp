@@ -31,22 +31,21 @@
 {% block body %}
  <!--       	<div data-role="page" id="page1" class="app"> -->
             		<div id="header" data-role="header" data-position="fixed">
-				<a href="/">Cancel</a>
+				<a href="tripList.html">Cancel</a>
                 		<h1>{{ name }}'s New Trip</h1>
-<!--                                <a href="/trip"> Done </a>
--->            		</div>
+				<a href="tripList.html" onclick="submitForms()">Done</a>
+            		</div>
             		<div data-role="content">
-				<form name="tripForm" method="POST">
-                                        <input type="submit" value="Save">
+				<form name="tripForm" action="./" method="get">
 					<label for="tripName">Trip Name: </label>
 					<input type="text" name="tripName" id="tripName" value="" data-clear-btn="true">
-<!--				</form>
--->				<div data-role="collapsible-set" data-theme="b" data-content-theme="d" data-inset="true">
+				</form>
+				<div data-role="collapsible-set" data-theme="b" data-content-theme="d" data-inset="true">
 					<div data-role="collapsible">
 						<h2>Flight Info</h2>
 						<!--Alert: action attribute need url-->
-<!--						<form autocomplete="on" name="flightForm" action="./" method="get">
--->
+						<form autocomplete="on" name="flightForm" action="./" method="get">
+
 							<ul data-role="listview" data-inset="true">
 								<li data-role="fieldcontain">
 									<label for="airline">Airline: </label>
@@ -85,12 +84,12 @@
 									<input type="text" name="seat" id="seat" value="" data-clear-btn="true" >
 								</li>								
 							</ul>
-<!--						</form>
--->					</div>
+						</form>
+					</div>
 					<div data-role="collapsible">
 						<h2>Hotel Info</h2>
-<!--						<form autocomplete="on" id="hotelForm" action="./" method="get">
--->
+						<form autocomplete="on" id="hotelForm" action="./" method="get">
+
 							<ul data-role="listview" data-inset="true">
 								<li data-role="fieldcontain">
 									<label for="hotel">Hotel Name: </label>
@@ -117,19 +116,19 @@
 									<input type="time" name="outtime" id="outtime" value="" data-clear-btn="true" >
 								</li>
 							</ul>
-<!--						</form>
--->					</div>
+						</form>
+					</div>
 					<div data-role="collapsible">
 						<h2>To-Do</h2>
-<!--						<form autocomplete="on" id="todoForm" action="./" method="get">
--->							<ul data-role="listview" data-inset="true">
+						<form autocomplete="on" id="todoForm" action="./" method="get">
+							<ul data-role="listview" data-inset="true">
 								<li data-role="fieldcontain">
                                                                         <label for="todoForm"> Item #1: </label>
-									<input type="text" name="todo1" class="todo" value="" data-clear-btn="true" data-inline="true">
+									<input type="text" class="todo" value="" data-clear-btn="true" data-inline="true">
                                                                         <label for="todoForm"> Item #2: </label>
-									<input type="text" name="todo2" class="todo" value="" data-clear-btn="true" data-inline="true">
+									<input type="text" class="todo" value="" data-clear-btn="true" data-inline="true">
                                                                         <label for="todoForm"> Item #3: </label>
-									<input type="text" name="todo3" class="todo" value="" data-clear-btn="true" data-inline="true">
+									<input type="text" class="todo" value="" data-clear-btn="true" data-inline="true">
 								</li>
 							</ul>
 						</form>

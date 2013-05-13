@@ -32,6 +32,22 @@ class TripListHandler(tornado.web.RequestHandler):
 class NewTripHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('version2/newTrip2.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+    
+    def post(self, tripName=None):
+        trip_fields = ['uid', 'tripName', 'airline', 'confirmation', 'departwhere', 'departday', 'departtime',
+                       'arrivewhere', 'arriveday', 'arrivetime', 'flight', 'terminal', 'gate', 'seat',
+                       'hotel', 'zipcode', 'room', 'inday', 'intime', 'outday', 'outtime']
+
+        trip = dict()
+        for key in trip_fields:
+            trip[key] = self.get_argument(key, None)
+        trip['uid'] = self.get_secure_cookie('user_id') 
+
+        trip_db = self.application.db.trips
+
+        print trip
+        trip_db.save(trip)
+        self.redirect('/trip')
 
 class ListHandler(tornado.web.RequestHandler):
     def get(self):
@@ -157,7 +173,7 @@ class Application(tornado.web.Application):
             "facebook_api_key": options.facebook_api_key,
             "facebook_secret": options.facebook_secret,
             "cookie_secret": options.cookie_secret,
-            "xsrf_cookies": True,
+            "xsrf_cookies": False,
             "redirect_path": options.redirect_path,
             "scope": options.scope
         }
