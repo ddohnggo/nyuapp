@@ -38,13 +38,17 @@ class TripListHandler(tornado.web.RequestHandler):
         self.render('version2/tripList3.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'), trips=trips_list)
 
 class NewTripHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render('version2/newTrip2.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'))
+    def get(self, tripName=None):
+        trip = dict()
+        if tripName:
+            trip_db = self.application.db.trips
+            trip = trip_db.find_one({'tripName': tripName})
+        self.render('version2/newTrip2.html', name=getattrib(self, 'user_name'), pic=getattrib(self, 'photo'), trip=trip)
     
     def post(self, tripName=None):
         trip_fields = ['uid', 'tripName', 'airline', 'confirmation', 'departwhere', 'departday', 'departtime',
                        'arrivewhere', 'arriveday', 'arrivetime', 'flight', 'terminal', 'gate', 'seat',
-                       'hotel', 'zipcode', 'room', 'inday', 'intime', 'outday', 'outtime']
+                       'hotel', 'zipcode', 'room', 'inday', 'intime', 'outday', 'outtime', 'todo1', 'todo2', 'todo3']
 
         trip = dict()
         for key in trip_fields:
@@ -175,6 +179,7 @@ class Application(tornado.web.Application):
             (r'/stay', StayHandler),
             (r'/list', ListHandler),
             (r'/triplist', TripListHandler),
+            (r'/edit/([0-9A-Za-z\-\s]+)', NewTripHandler),
             (r'/trip', NewTripHandler)
         ]
         settings = {

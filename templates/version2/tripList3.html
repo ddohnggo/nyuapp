@@ -27,7 +27,7 @@
 				<ul data-role="listview" data-autodividers="true" data-divider-theme="b" data-inset="false" data-filter="true" data-filer-theme="d" data-filter-placeholder="Search trips...">
 						<!--Alert: List of trips should be get from database in alphabetical order-->
                                                 {% for trip in trips %} 	
-                                                   <li data-theme="c"><a href="tripInfo.html" data-transition="pop"> {{ trip }}</a></li>
+                                                   <li data-theme="c"><a href="/edit/{{ trip }}" data-transition="pop"> {{ trip }}</a></li>
                                                 {% end %} 
 <!--
 						<li data-theme="c"><a href="tripInfo.html" data-transition="pop">April Trip with family</a></li>

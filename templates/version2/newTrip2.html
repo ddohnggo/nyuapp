@@ -39,7 +39,7 @@
 				<form name="tripForm" method="POST">
                                         <input type="submit" value="Save">
 					<label for="tripName">Trip Name: </label>
-					<input type="text" name="tripName" id="tripName" value="" data-clear-btn="true">
+					<input type="text" name="tripName" id="tripName" value="{{ trip.get('tripName', '')}}" data-clear-btn="true">
 <!--				</form>
 -->				<div data-role="collapsible-set" data-theme="b" data-content-theme="d" data-inset="true">
 					<div data-role="collapsible">
@@ -50,39 +50,39 @@
 							<ul data-role="listview" data-inset="true">
 								<li data-role="fieldcontain">
 									<label for="airline">Airline: </label>
-									<input type="text" name="airline" id="airline" value="" data-clear-btn="true" >
+									<input type="text" name="airline" id="airline" value="{{ trip.get('airline', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="confirmation">Conf.#: </label>
-									<input type="text" name="confirmation" id="confirmation" value="" data-clear-btn="true" >
+									<input type="text" name="confirmation" id="confirmation" value="{{ trip.get('confirmation', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="departwhere">Depart Airport: </label>
-									<input type="text" name="departwhere" id="departwhere" value="" data-clear-btn="true" >
+									<input type="text" name="departwhere" id="departwhere" value="{{ trip.get('departwhere', '')}}" data-clear-btn="true" >
 									<label for="departday">Depart Date: </label>
-									<input type="date" name="departday" id="departday" value="" data-clear-btn="true" >
+									<input type="date" name="departday" id="departday" value="{{ trip.get('departday', '')}}" data-clear-btn="true" >
 									<label for="departtime">Depart time: </label>
-									<input type="time" name="departtime" id="departtime" value="" data-clear-btn="true" >
+									<input type="time" name="departtime" id="departtime" value="{{ trip.get('departtime', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="arrivewhere">Arrival Airport: </label>
-									<input type="text" name="arrivewhere" id="arrivewhere" value="" data-clear-btn="true" >
+									<input type="text" name="arrivewhere" id="arrivewhere" value="{{ trip.get('arrivewhere', '')}}" data-clear-btn="true" >
 									<label for="arriveday">Arrival Date: </label>
-									<input type="date" name="arriveday" id="arriveday" value="" data-clear-btn="true" >
+									<input type="date" name="arriveday" id="arriveday" value="{{ trip.get('arriveday', '')}}" data-clear-btn="true" >
 									<label for="arrivetime">Arrival time: </label>
-									<input type="time" name="arrivetime" id="arrivetime" value="" data-clear-btn="true" >
+									<input type="time" name="arrivetime" id="arrivetime" value="{{ trip.get('arrivetime', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="flight">Flight #: </label>
-									<input type="text" name="flight" id="flight" value="" data-clear-btn="true" >
+									<input type="text" name="flight" id="flight" value="{{ trip.get('flight', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="terminal">Terminal: </label>
-									<input type="number" min="1" max="10" name="terminal" id="terminal" value="" data-clear-btn="true" >
+									<input type="number" min="1" max="10" name="terminal" id="terminal" value="{{ trip.get('terminal', '')}}" data-clear-btn="true" >
 									<label for="gate">Gate: </label>
-									<input type="text" name="gate" id="gate" value="" data-clear-btn="true" >
+									<input type="text" name="gate" id="gate" value="{{ trip.get('gate', '')}}" data-clear-btn="true" >
 									<label for="seat">Seat: </label>
-									<input type="text" name="seat" id="seat" value="" data-clear-btn="true" >
+									<input type="text" name="seat" id="seat" value="{{ trip.get('seat', '')}}" data-clear-btn="true" >
 								</li>								
 							</ul>
 <!--						</form>
@@ -94,27 +94,27 @@
 							<ul data-role="listview" data-inset="true">
 								<li data-role="fieldcontain">
 									<label for="hotel">Hotel Name: </label>
-									<input type="text" name="hotel" id="hotel" value="" data-clear-btn="true" >
+									<input type="text" name="hotel" id="hotel" value="{{ trip.get('hotel', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="zipcode">Zip Code: </label>
-									<input type="text" size="5" maxlength="5" name="zipcode" id="zipcode" value="" data-clear-btn="true" >
+									<input type="text" size="5" maxlength="5" name="zipcode" id="zipcode" value="{{ trip.get('zipcode', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="room">Room: </label>
-									<input type="text" name="room" id="room" value="" data-clear-btn="true" >
+									<input type="text" name="room" id="room" value="{{ trip.get('room', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="inday">Check-In Date: </label>
-									<input type="date" name="inday" id="inday" value="" data-clear-btn="true" >
+									<input type="date" name="inday" id="inday" value="{{ trip.get('inday', '')}}" data-clear-btn="true" >
 									<label for="intime">Check-In Time: </label>
-									<input type="time" name="intime" id="intime" value="" data-clear-btn="true" >
+									<input type="time" name="intime" id="intime" value="{{ trip.get('intime', '')}}" data-clear-btn="true" >
 								</li>
 								<li data-role="fieldcontain">
 									<label for="outday">Check-Out Date: </label>
-									<input type="date" name="outday" id="outday" value="" data-clear-btn="true" >
+									<input type="date" name="outday" id="outday" value="{{ trip.get('outday', '')}}" data-clear-btn="true" >
 									<label for="outtime">Check-Out Time: </label>
-									<input type="time" name="outtime" id="outtime" value="" data-clear-btn="true" >
+									<input type="time" name="outtime" id="outtime" value="{{ trip.get('outtime', '')}}" data-clear-btn="true" >
 								</li>
 							</ul>
 <!--						</form>
@@ -125,11 +125,11 @@
 -->							<ul data-role="listview" data-inset="true">
 								<li data-role="fieldcontain">
                                                                         <label for="todoForm"> Item #1: </label>
-									<input type="text" name="todo1" class="todo" value="" data-clear-btn="true" data-inline="true">
+									<input type="text" name="todo1" class="todo" value="{{ trip.get('todo1', '') }}" data-clear-btn="true" data-inline="true">
                                                                         <label for="todoForm"> Item #2: </label>
-									<input type="text" name="todo2" class="todo" value="" data-clear-btn="true" data-inline="true">
+									<input type="text" name="todo2" class="todo" value="{{ trip.get('todo2', '') }}" data-clear-btn="true" data-inline="true">
                                                                         <label for="todoForm"> Item #3: </label>
-									<input type="text" name="todo3" class="todo" value="" data-clear-btn="true" data-inline="true">
+									<input type="text" name="todo3" class="todo" value="{{ trip.get('todo3', '') }}" data-clear-btn="true" data-inline="true">
 								</li>
 							</ul>
 						</form>
